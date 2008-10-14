@@ -241,6 +241,13 @@ module Technoweenie # :nodoc:
           S3Object.url_for(full_filename(thumbnail), bucket_name, options)
         end
 
+        def authenticated_virtual_hosting_s3_url(*args)
+          options   = args.extract_options!
+          virtual_hosting_domain = args.shift
+          thumbnail = args.shift
+          S3Object.virtual_hosting_url_for(virtual_hosting_domain, full_filename(thumbnail), nil, options)
+        end
+
         def create_temp_file
           write_to_temp_file current_data
         end
